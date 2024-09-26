@@ -15,6 +15,10 @@ function TodoWrapper() {
     
    
   }
+
+  function deleteTodo(id){ 
+    setTodos(prev=>prev.filter(todo=>{return todo.id != id}))
+  }
   useEffect(()=>{ 
     const data = JSON.parse(localStorage.getItem('todos'))
     if (data && data.length >0){ 
@@ -23,6 +27,7 @@ function TodoWrapper() {
     }
     
   },[])
+
  
 
   
@@ -45,7 +50,7 @@ function TodoWrapper() {
             {todos.map(todo=>{
               
                 return (
-                  <TodoList key = {todo.id} todo = {todo}/>
+                  <TodoList deleteTodo={deleteTodo} key = {todo.id} todo = {todo}/>
                 )
             })}
             

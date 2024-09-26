@@ -8,7 +8,9 @@ function TodoList(props) {
                           <span>{props.todo.title}</span>
                           <div className="flex space-x-2">
                             <button className="bg-gray-200 px-2 py-1 rounded-lg">Complete</button>
-                            <button className="bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600">Delete</button>
+                            <button className="bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600" onClick={()=>{ 
+                              props.deleteTodo(props.todo.id)
+                            }}>Delete</button>
                           </div>
                         </li>
       </ul>
@@ -17,4 +19,3 @@ function TodoList(props) {
 }
 
 export default TodoList
-  
