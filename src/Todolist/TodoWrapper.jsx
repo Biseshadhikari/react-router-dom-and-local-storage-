@@ -3,17 +3,28 @@ import TodoCreate from './TodoCreate';
 import TodoList from './TodoList';
 function TodoWrapper() {
   const [todos,setTodos] = useState([])
-  const [isLoading,setIsLoading] = useState(true)
+  const [isLoading,setIsLoading] = useState(false)
 
   function createTodo(title){ 
     setTodos(prev=>[...prev,{
       'id':Date.now(),
-      'title':title
+      'title':title,
+      'isUpdatable':false
 
     }])
 
     
    
+  }
+
+
+  function changeUpdatable(id){ 
+    setTodos(prev=>prev.map(todo=>(
+      todo.id == id?{
+        ...todo,
+        "isUpdatable":!todo.isUpdatable
+      }:todo
+    )))
   }
 
   function deleteTodo(id){ 
@@ -50,7 +61,7 @@ function TodoWrapper() {
             {todos.map(todo=>{
               
                 return (
-                  <TodoList deleteTodo={deleteTodo} key = {todo.id} todo = {todo}/>
+                  <TodoList key = {todo.id} changeUpdatable = {changeUpdatable} deleteTodo={deleteTodo} todo = {todo}/>
                 )
             })}
             
