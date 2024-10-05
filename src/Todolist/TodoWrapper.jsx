@@ -17,6 +17,16 @@ function TodoWrapper() {
    
   }
 
+  function update(title,id){ 
+    setTodos(prev=>prev.map(todo=>(
+      todo.id == id?{
+        ...todo,
+        'title':title,
+        'isUpdatable':!todo.isUpdatable
+        
+      }:todo
+    )))
+  }
 
   function changeUpdatable(id){ 
     setTodos(prev=>prev.map(todo=>(
@@ -61,7 +71,7 @@ function TodoWrapper() {
             {todos.map(todo=>{
               
                 return (
-                  <TodoList key = {todo.id} changeUpdatable = {changeUpdatable} deleteTodo={deleteTodo} todo = {todo}/>
+                  <TodoList update = {update} key = {todo.id} changeUpdatable = {changeUpdatable} deleteTodo={deleteTodo} todo = {todo}/>
                 )
             })}
             

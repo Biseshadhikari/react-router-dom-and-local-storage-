@@ -1,17 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function TodoList(props) {
+  const [data,setData] = useState(props.todo.title)
   return (
     <div>
      {props.todo.isUpdatable == true?( 
-        <div class="flex items-center space-x-2">
-        <input type="text" placeholder="Enter your update" class="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-        <button onClick={()=>{ 
-                              props.changeUpdatable(props.todo.id)
-                            }} class="bg-blue-500 text-white rounded-lg px-4 py-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <form onSubmit = {()=>{ 
+          props.update(data,props.todo.id)
+        }} class="flex items-center space-x-2">
+        <input value = {data} onChange = {(e)=>{ 
+          setData(e.target.value)
+
+        }} type="text" placeholder="Enter your update" class="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+        <button class="bg-blue-500 text-white rounded-lg px-4 py-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
           Update
         </button>
-      </div>
+      </form>
      ):(
       <ul className="space-y-2">
                         <li className="flex justify-between items-center p-2 border rounded-lg">

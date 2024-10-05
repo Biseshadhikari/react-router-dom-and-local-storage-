@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { useAuthContext } from '../context/ContextProvider'
 
 function About() {
+  const {username} = useAuthContext()
   return (
     <div>
-      This is about page
+      This is about page {messagetomygrandchild}
     </div>
   )
 }
